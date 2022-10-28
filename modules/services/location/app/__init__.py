@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_restx import Api
@@ -12,7 +13,10 @@ def create_app(env=None):
 
     app = Flask(__name__)
     app.config.from_object(config_by_name[env or "test"])
-    api = Api(app, title="UdaConnect API", version="0.1.0")
+    api = Api(app, title="UdaConnect LocationService API", version="0.2.0")
+
+    logging.basicConfig(level=logging.DEBUG)
+    app.logger.info("Flask is starting for UdaConnect LocationService API")
 
     CORS(app)  # Set CORS for development
 
@@ -21,6 +25,6 @@ def create_app(env=None):
 
     @app.route("/health")
     def health():
-        return jsonify("healthy")
+        return jsonify("UdaConnect LocationService healthy")
 
     return app

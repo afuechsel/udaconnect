@@ -9,7 +9,7 @@ class Connection extends Component {
       personId: null,
     };
 
-    this.apiBaseUrl = process.env.REACT_APP_API_URL
+    this.apiBaseUrl = process.env.REACT_APP_CONNECTION_API_URL
   }
 
   componentDidUpdate() {
@@ -24,7 +24,7 @@ class Connection extends Component {
     if (personId) {
       // TODO: endpoint should be abstracted into a config variable
       fetch(
-        `${this.apiBaseUrl}/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5`
+        `${this.apiBaseUrl}/connections/${personId}?start_date=2020-01-01&end_date=2020-12-30&distance=5`
       )
         .then((response) => response.json())
         .then((connections) =>
