@@ -2,6 +2,7 @@ from app.udaconnect.models import Location
 from app.udaconnect.schemas import LocationSchema
 from app.udaconnect.services import LocationService
 from flask import request
+from typing import List
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
 
@@ -14,6 +15,11 @@ class LocationsResource(Resource):
     def post(self) -> Location:
         location: Location = LocationService.create(api.payload)
         return location
+
+    @responds(schema=LocationSchema, api=api, many=True)
+    def get(self) -> List[Location]:
+        persons: List[Location] = LocationService.retrieve_all()
+        return persons
 
 @api.route("/locations/<location_id>")
 @api.param("location_id", "Unique ID for a given Location", _in="query")
