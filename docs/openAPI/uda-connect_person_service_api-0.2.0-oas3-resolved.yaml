@@ -1,0 +1,108 @@
+---
+openapi: 3.0.0
+info:
+  title: UdaConnect PersonService API
+  version: 0.2.0-oas3
+servers:
+- url: /
+tags:
+- name: UdaConnect Persons
+  description: PersonData.
+paths:
+  /api/persons:
+    get:
+      tags:
+      - UdaConnect Persons
+      operationId: get_persons_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: mask
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+    post:
+      tags:
+      - UdaConnect Persons
+      operationId: post_persons_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: mask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+  /api/persons/{person_id}:
+    get:
+      tags:
+      - UdaConnect Persons
+      operationId: get_person_resource
+      parameters:
+      - name: person_id
+        in: path
+        description: Unique ID for a given Person
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: mask
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company_name:
+          type: string
+  responses:
+    ParseError:
+      description: When a mask can't be parsed
+    MaskError:
+      description: When any error occurs on mask

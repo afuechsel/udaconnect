@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "1668a5ba-d012-4d39-adfa-69492d1abc4a",
+		"name": "Udaconnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "953164"
+	},
+	"item": [
+		{
+			"name": "Person API",
+			"item": [
+				{
+					"name": "http://localhost:30001/api/persons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30001/api/persons/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"persons",
+								"3"
+							]
+						},
+						"description": "Get all persons"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:30001/api/persons/3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30001/api/persons/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"persons",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:30001/api/persons",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Pieter\",\n  \"last_name\": \"Field\",\n  \"company_name\": \"Digital Equipment Corporation\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:30001/api/persons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"persons"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Location API",
+			"item": [
+				{
+					"name": "http://localhost:30002/api/locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30002/api/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30002",
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:30002/api/locations/29",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30002/api/locations/29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30002",
+							"path": [
+								"api",
+								"locations",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:30002/api/locations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"latitude\": \"-122.30\",\n    \"longitude\": \"37.54\",\n    \"person_id\": 1,\n    \"creation_time\": \"2022-12-21T13:11:06\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:30002/api/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30002",
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connection API",
+			"item": [
+				{
+					"name": "http://localhost:30003/api/connections/5?distance=5&end_date=2021-01-01&start_date=2020-01-01",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30003/api/connections/5?distance=5&end_date=2021-01-01&start_date=2020-01-01",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30003",
+							"path": [
+								"api",
+								"connections",
+								"5"
+							],
+							"query": [
+								{
+									"key": "distance",
+									"value": "5"
+								},
+								{
+									"key": "end_date",
+									"value": "2021-01-01"
+								},
+								{
+									"key": "start_date",
+									"value": "2020-01-01"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
