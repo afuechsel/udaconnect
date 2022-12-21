@@ -1,3 +1,61 @@
+# UdaConnect submission André Füchsel 
+
+## Preface
+
+The code in this example project is **not** production ready. It is merely a POC and must be viewed as is. It fulfills the requirements of the project declared by Udacity though. There are several reasons for that: 
+
+* The starter project is not well written and contains errors. My long open [Pull Request](https://github.com/udacity/nd064-c2-message-passing-projects-starter/pull/20) has never been reviewed nor accepted. 
+* The project is based on long outdated dependencies. Some of them are over 3 years old and not even mainatained anymore (esp. Flask 1.1.1). That makes it hard to develop something useful. As there are too much other dependencies I did not finish an update of all dependencies and decided to stick with the given ones. 
+* My questions related to the above in "Ask a mentor" were not answered. 
+* Developing against a local kubernetes cluster is tedious. I therefore created a docker-compose environment which is much more handy. 
+* I am not here to learn Python (which is not the programming language I am used to), so there might be flaws a regular Python developer would not makes
+
+I would like to ask to accept this submission as long as there are no major flaws so I can continue with the course material. 
+
+## Submission code: 
+
+* [Architectural Design Considerations](docs/architecture_decisions.md)
+* [openAPI YAML files](docs/openAPI/)
+  * [Person API](docs/openAPI/uda-connect_person_service_api-0.2.0-oas3-resolved.yaml)
+  * [Location API](docs/openAPI/uda-connect_location_service_api-0.2.0-oas3-resolved.yaml)
+  * [Connection API](docs/openAPI/uda-connect_connection_service_api-0.2.0-oas3-resolved.yaml)
+* gRPC documentation can be taken from [the code](modules/services/person/app/udaconnect/person.proto)
+* Kubernetes pods and services can be found [here](docs/everything_deployed.png)
+* [Postman Collection](docs/postman.json)
+
+## How to run
+
+There are two ways to run the project: as docker compose environment or in the Kuberneted Cluster in the Vagrant virtual machine. 
+
+### Docker compose
+
+ `docker compose up` for a locally running development environment. The UdaConnect UI can be reached with http://localhost:3000. 
+
+#### Swagger UI 
+
+* Person API: http://localhost:3001
+* Location API: http://localhost:3002
+* Connection API: http://localhost:3003
+
+A new example location can be pushed by calling `python3 modules/kafka_producer/producer.py`. This publishes a message to the `locations` topic of Kafka that is processed by the _LocationService_. 
+
+### Kubernetes Cluster
+
+With `kubectl apply -f deployment` all services will be deployed to the Kubernetes cluster in the Vagrant virtual machine, that must be started up before with `vagrant up`. The UdaConnect UI can be reached with http://localhost:30000. (notice the different ports!)
+
+#### Swagger UI 
+
+* Person API: http://localhost:30001
+* Location API: http://localhost:30002
+* Connection API: http://localhost:30003
+
+A new example location can be pushed by calling `python3 modules/kafka_producer/producer.py`. This publishes a message to the `locations` topic of Kafka that is processed by the _LocationService_. Make sure to setup port forwarding from the kafka pod before trying to do this by `kubectl port-forward pod/kafka-xxxx-xxx 9092`. 
+
+
+---- 
+
+**Original Readme** 
+
 # UdaConnect
 ## Overview
 ### Background

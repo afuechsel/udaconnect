@@ -1,6 +1,8 @@
-# Architectural Design decisions
+# UdaConnect Project André Füchsel 
 
-## Target architecture
+## Architectural Design decisions
+
+### Target architecture
 
 Breaking down the monolith into microservices brings us to the following target architecture: 
 
@@ -10,7 +12,7 @@ Breaking down the monolith into microservices brings us to the following target 
 
 ![Udaconnect target architecture](architecture_design.png)
 
-## Justifying architectural decisions
+### Justifying architectural decisions
 
 1. We will use REST for all interfaces towards the _FrontendClient_ as REST is the standard way for communication using HTTP clients with their backend. We will provide a REST interface for _Person_ data and _Connection_ data, there is no need to also provide a REST interface for _Location_ data as it will not be displayed directly on the frontend (only as part of the _Connection_ data). 
 
@@ -22,4 +24,9 @@ Breaking down the monolith into microservices brings us to the following target 
 
 ## Out of scope
 
-While refactoring into several services one would normally also divide the database into different ones: one for each service. For simplicit and as this is only a showcase it has been decided to stick with just one datbase used by each service - but services are only allowed to access their very own tables. 
+While refactoring into several services one would normally also divide the database into different ones: one for each service. For simplicity and as this is only a showcase it has been decided to stick with just one datbase used by each service - but services are only allowed to access their very own tables. 
+
+### Refactoring comments
+
+It would have been useful fot the _ConnectionService_ to access also the _LocationData_ via gRPC. This the _LocationService_ would not need to access the database as well. But this turned out to be much more difficult then the gRPC interface to the _PersonService_ so I decided to not implement it. In a real production environment this would be needed. 
+

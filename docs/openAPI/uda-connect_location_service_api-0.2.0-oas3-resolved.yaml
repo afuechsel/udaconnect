@@ -1,0 +1,111 @@
+---
+openapi: 3.0.0
+info:
+  title: UdaConnect LocationService API
+  version: 0.2.0-oas3
+servers:
+- url: /
+tags:
+- name: UdaConnect Locations
+  description: Geolocations
+paths:
+  /api/locations:
+    get:
+      tags:
+      - UdaConnect Locations
+      operationId: get_locations_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: mask
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+    post:
+      tags:
+      - UdaConnect Locations
+      operationId: post_locations_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: mask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+  /api/locations/{location_id}:
+    get:
+      tags:
+      - UdaConnect Locations
+      operationId: get_location_resource
+      parameters:
+      - name: location_id
+        in: path
+        description: Unique ID for a given Location
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: mask
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+components:
+  schemas:
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+        person_id:
+          type: integer
+        longitude:
+          type: string
+        latitude:
+          type: string
+        creation_time:
+          type: string
+          format: date-time
+  responses:
+    ParseError:
+      description: When a mask can't be parsed
+    MaskError:
+      description: When any error occurs on mask
