@@ -30,7 +30,7 @@ class ConnectionService:
         ).all()
 
         # Cache all users in memory for quick lookup
-        channel = grpc.insecure_channel("udaconnect-person:5005")
+        channel = grpc.insecure_channel("udaconnect-person-api:5005")
         stub = person_pb2_grpc.PersonServiceStub(channel)
         response = stub.Get(person_pb2.Empty())
 

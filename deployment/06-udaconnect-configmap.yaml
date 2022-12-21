@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  REACT_APP_PERSON_API_URL: "http://localhost:30001/api"
+  REACT_APP_LOCATION_API_URL: "http://localhost:30002/api"
+  REACT_APP_CONNECTION_API_URL: "http://localhost:30003/api"
+metadata:
+  name: udaconnect-env

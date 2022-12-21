@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-data:
-  REACT_APP_API_URL: "http://localhost:30001/api"
-metadata:
-  name: udaconnect-env

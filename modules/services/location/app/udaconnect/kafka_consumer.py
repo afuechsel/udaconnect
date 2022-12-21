@@ -6,7 +6,7 @@ from kafka import KafkaConsumer
 from app.udaconnect.services import LocationService
 
 TOPIC_NAME = 'locations'
-KAFKA_SERVER = 'kafka:9093'
+KAFKA_SERVER = 'kafka-service:9092'
 
 logger = logging.getLogger(__name__)
 
