@@ -1,3 +1,6 @@
+DROP TABLE location;
+DROP TABLE person;
+
 CREATE TABLE person (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR NOT NULL,
